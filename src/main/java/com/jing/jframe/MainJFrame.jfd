@@ -5,12 +5,22 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "this"
-			"minimumSize": new java.awt.Dimension( 320, 320 )
+			"minimumSize": new java.awt.Dimension( 800, 600 )
 			add( new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar1"
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "menuBegin"
 					"text": "开始"
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuSelledList"
+						"text": "销售列表"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "menuSelledListMouseClicked", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuXls"
+						"text": "报表中心"
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "menuXlsMouseClicked", true ) )
+					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "menuHelp"
@@ -18,11 +28,16 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuAbout"
 						"text": "关于我们"
-						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "menuItem1MouseClicked", true ) )
+						addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "menuAboutMouseClicked", true ) )
 					} )
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "North"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.CardLayout ) ) {
+				name: "mainPanel"
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

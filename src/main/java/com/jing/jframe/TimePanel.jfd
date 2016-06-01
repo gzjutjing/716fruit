@@ -1,0 +1,31 @@
+JFDML JFormDesigner: "5.2.3.0.281" Java: "1.8.0_77" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.CardLayout ) ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JSplitPane", new FormLayoutManager( class javax.swing.JSplitPane ) ) {
+				name: "timeTreeSplitPane"
+				"dividerLocation": 120
+				"dividerSize": 6
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "timeTreeScrollPane"
+					"minimumSize": new java.awt.Dimension( 100, 100 )
+					add( new FormComponent( "javax.swing.JTree" ) {
+						name: "timeTree"
+						"minimumSize": new java.awt.Dimension( 150, 150 )
+						"maximumSize": new java.awt.Dimension( 200, 200 )
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "left"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "card1"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}
