@@ -23,8 +23,8 @@ public class MainJFrame extends JFrame {
     public MainJFrame() {
         initComponents();
         //
-        //mainPanel.add(new TimePanel());
-        //mainPanel.validate();
+        mainPanel.add(new TimePanel());
+        mainPanel.validate();
     }
 
     public static void main(String[] args) {

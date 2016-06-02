@@ -7,7 +7,7 @@ new FormModel {
 			name: "this"
 			add( new FormContainer( "javax.swing.JSplitPane", new FormLayoutManager( class javax.swing.JSplitPane ) ) {
 				name: "timeTreeSplitPane"
-				"dividerLocation": 120
+				"dividerLocation": 150
 				"dividerSize": 6
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "timeTreeScrollPane"
@@ -16,6 +16,7 @@ new FormModel {
 						name: "timeTree"
 						"minimumSize": new java.awt.Dimension( 150, 150 )
 						"maximumSize": new java.awt.Dimension( 200, 200 )
+						addEvent( new FormEvent( "javax.swing.event.TreeSelectionListener", "valueChanged", "timeTreeValueChanged", true ) )
 					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {
 					"value": "left"

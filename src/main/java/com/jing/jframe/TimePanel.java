@@ -4,8 +4,17 @@
 
 package com.jing.jframe;
 
-import java.awt.*;
+import com.jing.jframe.pojo.TreeTimeNode;
+
 import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import java.awt.*;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.TemporalAdjusters;
 
 /**
  * @author administrator
@@ -13,6 +22,47 @@ import javax.swing.*;
 public class TimePanel extends JPanel {
     public TimePanel() {
         initComponents();
+        LocalDate date2015 = LocalDate.of(2015, Month.JANUARY, 1);
+        LocalDate now = LocalDate.now();
+        int cha = now.getYear() - date2015.getYear();
+        DefaultMutableTreeNode top = new DefaultMutableTreeNode("年月日");
+        for (int i = 0; i <= cha; i++) {
+            int year = now.getYear() - i;
+            DefaultMutableTreeNode yNode = new DefaultMutableTreeNode(new TreeTimeNode(year + "年", TreeTimeNode.TimeTypeEnum.YEAR));
+            int month = 12;
+            if (year == now.getYear()) {
+                month = now.getMonth().getValue();
+            }
+            for (int j = 1; j <= month; j++) {//没年都有12个月
+                DefaultMutableTreeNode mNode = new DefaultMutableTreeNode(new TreeTimeNode(j + "月", TreeTimeNode.TimeTypeEnum.MONTH));
+                LocalDate temp = LocalDate.of(year, j, 1);
+                LocalDate lastDay = temp.with(TemporalAdjusters.lastDayOfMonth());
+                for (int k = 1; k <= lastDay.getDayOfMonth(); k++) {
+                    mNode.add(new DefaultMutableTreeNode(new TreeTimeNode(k + "号", TreeTimeNode.TimeTypeEnum.DAY)));
+                }
+                yNode.add(mNode);
+            }
+            top.add(yNode);
+        }
+        DefaultTreeModel treeModel = (DefaultTreeModel) timeTree.getModel();
+        treeModel.setRoot(top);
+        TreeNode root = (TreeNode) treeModel.getRoot();
+        TreeNode first = root.getChildAt(0);
+        //timeTree.expandPath(new TreePath(first));
+        timeTree.expandRow(1);
+    }
+
+    private void timeTreeValueChanged(TreeSelectionEvent e) {
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) timeTree.getLastSelectedPathComponent();
+        TreeTimeNode t = (TreeTimeNode) node.getUserObject();
+        switch (t.getType().getType()) {
+            case "YEAR":
+                break;
+            case "MONTH":
+                break;
+            case "DAY":
+                break;
+        }
     }
 
     private void initComponents() {
@@ -26,7 +76,7 @@ public class TimePanel extends JPanel {
 
         //======== timeTreeSplitPane ========
         {
-            timeTreeSplitPane.setDividerLocation(120);
+            timeTreeSplitPane.setDividerLocation(150);
             timeTreeSplitPane.setDividerSize(6);
 
             //======== timeTreeScrollPane ========
@@ -36,6 +86,7 @@ public class TimePanel extends JPanel {
                 //---- timeTree ----
                 timeTree.setMinimumSize(new Dimension(150, 150));
                 timeTree.setMaximumSize(new Dimension(200, 200));
+                timeTree.addTreeSelectionListener(e -> timeTreeValueChanged(e));
                 timeTreeScrollPane.setViewportView(timeTree);
             }
             timeTreeSplitPane.setLeftComponent(timeTreeScrollPane);
