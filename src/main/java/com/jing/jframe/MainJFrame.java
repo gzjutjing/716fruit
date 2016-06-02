@@ -4,6 +4,7 @@
 
 package com.jing.jframe;
 
+import java.awt.event.*;
 import com.jing.commons.GlobalUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,13 +34,13 @@ public class MainJFrame extends JFrame {
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    private void menuAboutMouseClicked(MouseEvent e) {
+    private void menuAboutActionPerformed(ActionEvent e) {
         logger.debug(GlobalUtils.toLineInfo("点击帮助中心开始"));
         JOptionPane.showMessageDialog(null, "创建于2016年！");
         logger.debug(GlobalUtils.toLineInfo("点击帮助中心结束"));
     }
 
-    private void menuSelledListMouseClicked(MouseEvent e) {
+    private void menuSelledListActionPerformed(ActionEvent e) {
         logger.debug(GlobalUtils.toLineInfo("点击销售列表开始"));
         mainPanel.removeAll();
         mainPanel.add(new TimePanel());
@@ -47,7 +48,7 @@ public class MainJFrame extends JFrame {
         logger.debug(GlobalUtils.toLineInfo("点击销售列表结束"));
     }
 
-    private void menuXlsMouseClicked(MouseEvent e) {
+    private void menuXlsActionPerformed(ActionEvent e) {
         logger.debug(GlobalUtils.toLineInfo("点击xls开始"));
         mainPanel.removeAll();
         mainPanel.add(new XlsPanel());
@@ -79,22 +80,12 @@ public class MainJFrame extends JFrame {
 
                 //---- menuSelledList ----
                 menuSelledList.setText("\u9500\u552e\u5217\u8868");
-                menuSelledList.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        menuSelledListMouseClicked(e);
-                    }
-                });
+                menuSelledList.addActionListener(e -> menuSelledListActionPerformed(e));
                 menuBegin.add(menuSelledList);
 
                 //---- menuXls ----
                 menuXls.setText("\u62a5\u8868\u4e2d\u5fc3");
-                menuXls.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        menuXlsMouseClicked(e);
-                    }
-                });
+                menuXls.addActionListener(e -> menuXlsActionPerformed(e));
                 menuBegin.add(menuXls);
             }
             menuBar1.add(menuBegin);
@@ -105,12 +96,7 @@ public class MainJFrame extends JFrame {
 
                 //---- menuAbout ----
                 menuAbout.setText("\u5173\u4e8e\u6211\u4eec");
-                menuAbout.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        menuAboutMouseClicked(e);
-                    }
-                });
+                menuAbout.addActionListener(e -> menuAboutActionPerformed(e));
                 menuHelp.add(menuAbout);
             }
             menuBar1.add(menuHelp);
