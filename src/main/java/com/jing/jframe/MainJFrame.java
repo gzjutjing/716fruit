@@ -4,15 +4,17 @@
 
 package com.jing.jframe;
 
-import java.awt.event.*;
+import com.jing.commons.CacheMapUtils;
 import com.jing.commons.GlobalUtils;
+import com.jing.commons.GlobalsConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.time.LocalDate;
 
 /**
  * @author unknown
@@ -22,6 +24,27 @@ public class MainJFrame extends JFrame {
 
     public MainJFrame() {
         initComponents();
+        //初始化数据
+        File file = new File(GlobalsConstants.SYSTEM_FOLDER_DIR);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        //用户文件夹
+        File ufile = new File(GlobalsConstants.USER_DIR);
+        if (!ufile.exists()) {
+            ufile.mkdirs();
+        }
+        //一个月一个文件夹
+        LocalDate d = LocalDate.now();
+        File monthFile = new File(GlobalsConstants.SYSTEM_FOLDER_DIR + d.getYear() + "-" + d.getMonth().getValue());
+        if (!monthFile.exists()) {
+            monthFile.mkdirs();
+        }
+        CacheMapUtils.initializeGoodsUnitFile();
+        CacheMapUtils.initializeProvinceFromFile();
+        CacheMapUtils.initializeCityFromFile();
+        CacheMapUtils.initializeCountyFromFile();
+        CacheMapUtils.initializeUserFromFile();
         //
         mainPanel.add(new TimePanel());
         mainPanel.validate();
