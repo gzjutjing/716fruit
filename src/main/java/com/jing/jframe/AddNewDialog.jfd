@@ -10,9 +10,9 @@ new FormModel {
 				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
 					"$columnSpecs": "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0"
-					"$rowSpecs": "0, 0, 0, 0, 0, 0, 0, 0, 0, 0"
+					"$rowSpecs": "0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0"
 					"$hGap": 5
-					"$vGap": 5
+					"$vGap": 4
 					"$alignLeft": true
 					"$alignTop": true
 				} ) {
@@ -30,10 +30,17 @@ new FormModel {
 						name: "textFieldPhone"
 						"minimumSize": new java.awt.Dimension( 50, 25 )
 						"preferredSize": new java.awt.Dimension( 80, 25 )
+						addEvent( new FormEvent( "java.awt.event.KeyListener", "keyReleased", "textFieldPhoneKeyReleased", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 3
 						"gridy": 1
-						"gridwidth": 4
+						"gridwidth": 5
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelHintPhone"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 8
+						"gridy": 1
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label2"
@@ -47,10 +54,17 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "textFieldName"
 						"preferredSize": new java.awt.Dimension( 80, 25 )
+						addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textFieldNameKeyPressed", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 3
 						"gridy": 2
-						"gridwidth": 4
+						"gridwidth": 5
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelHintName"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 8
+						"gridy": 2
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label3"
@@ -81,13 +95,20 @@ new FormModel {
 						"gridy": 3
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField2"
+						name: "textFieldAddress"
 						"minimumSize": new java.awt.Dimension( 100, 25 )
 						"preferredSize": new java.awt.Dimension( 200, 25 )
+						addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textFieldAddressKeyPressed", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 3
 						"gridy": 4
-						"gridwidth": 6
+						"gridwidth": 5
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelHintAddress"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 8
+						"gridy": 4
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label4"
@@ -98,12 +119,19 @@ new FormModel {
 						"gridwidth": 2
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField3"
+						name: "textFieldGoodsName"
 						"preferredSize": new java.awt.Dimension( 80, 25 )
+						addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textFieldGoodsNameKeyPressed", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 3
 						"gridy": 5
 						"gridwidth": 5
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelHintGoodsName"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 8
+						"gridy": 5
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label5"
@@ -131,12 +159,19 @@ new FormModel {
 						"gridwidth": 2
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField5"
+						name: "textFieldNum"
 						"preferredSize": new java.awt.Dimension( 80, 25 )
+						addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textFieldNumKeyPressed", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 3
 						"gridy": 7
 						"gridwidth": 5
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelHintNum"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 8
+						"gridy": 7
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label7"
@@ -147,11 +182,38 @@ new FormModel {
 						"gridwidth": 2
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField6"
+						name: "textFieldPrice"
 						"preferredSize": new java.awt.Dimension( 80, 25 )
+						addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "textFieldPriceKeyPressed", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 3
 						"gridy": 8
+						"gridwidth": 5
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "labelHintPrice"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 8
+						"gridy": 8
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label8"
+						"text": "备注："
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 9
+						"gridwidth": 2
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						add( new FormComponent( "javax.swing.JTextArea" ) {
+							name: "textAreaMemo"
+							"minimumSize": new java.awt.Dimension( 0, 40 )
+							"preferredSize": new java.awt.Dimension( 0, 40 )
+						} )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 3
+						"gridy": 9
 						"gridwidth": 5
 					} )
 				}, new FormLayoutConstraints( class java.lang.String ) {
@@ -168,6 +230,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "okButton"
 						"text": "添加"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "okButtonActionPerformed", true ) )
 					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
 						"gridx": 1
 						"gridy": 0
@@ -188,7 +251,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 400, 335 )
+			"size": new java.awt.Dimension( 485, 465 )
 		} )
 	}
 }

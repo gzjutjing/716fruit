@@ -5,7 +5,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jing.jframe.pojo.*;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,11 +63,11 @@ public class CacheMapUtils {
             String strs = null;
             if (!provinceFile.exists()) {//不存在，初始化
                 strs = GlobalsConstants.DEFAULT_PROVINCES_DATA;
-                writeFile(provinceFile, GlobalsConstants.DEFAULT_PROVINCES_DATA);
+                FileUtils.writeFile(provinceFile, GlobalsConstants.DEFAULT_PROVINCES_DATA);
             } else {
-                strs = readFileToStr(provinceFile);
+                strs = FileUtils.readFileToStr(provinceFile);
             }
-            ObjectMapper objectMapper=new ObjectMapper();
+            ObjectMapper objectMapper = new ObjectMapper();
             List<Province> provinceList = objectMapper.readValue(strs, new TypeReference<List<Province>>() {
             });
             provinceCache.addAll(provinceList);
@@ -90,11 +91,11 @@ public class CacheMapUtils {
             String strs = null;
             if (!cityFile.exists()) {//不存在，初始化
                 strs = GlobalsConstants.DEFAULT_CITIES_DATA;
-                writeFile(cityFile, GlobalsConstants.DEFAULT_CITIES_DATA);
+                FileUtils.writeFile(cityFile, GlobalsConstants.DEFAULT_CITIES_DATA);
             } else {
-                strs = readFileToStr(cityFile);
+                strs = FileUtils.readFileToStr(cityFile);
             }
-            ObjectMapper objectMapper=new ObjectMapper();
+            ObjectMapper objectMapper = new ObjectMapper();
             List<Cities> citiesList = objectMapper.readValue(strs, new TypeReference<List<Cities>>() {
             });
             citiesCache.addAll(citiesList);
@@ -129,11 +130,11 @@ public class CacheMapUtils {
             String strs = null;
             if (!countyFile.exists()) {//不存在，初始化
                 strs = GlobalsConstants.DEFAULT_COUNTIES_DATA;
-                writeFile(countyFile, GlobalsConstants.DEFAULT_COUNTIES_DATA);
+                FileUtils.writeFile(countyFile, GlobalsConstants.DEFAULT_COUNTIES_DATA);
             } else {
-                strs = readFileToStr(countyFile);
+                strs = FileUtils.readFileToStr(countyFile);
             }
-            ObjectMapper objectMapper=new ObjectMapper();
+            ObjectMapper objectMapper = new ObjectMapper();
             List<Counties> countiesList = objectMapper.readValue(strs, new TypeReference<List<Counties>>() {
             });
             countiesCache.addAll(countiesList);
@@ -158,31 +159,6 @@ public class CacheMapUtils {
     }
 
     /**
-     * 读取文件，转化为string
-     */
-    private static String readFileToStr(File file) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        String temp = null;
-        StringBuilder sb = new StringBuilder();
-        while ((temp = reader.readLine()) != null) {
-            sb.append(temp);
-        }
-        reader.close();
-        return sb.toString().replaceAll("\\r\\n", "");
-    }
-
-    /**
-     * 写文件
-     */
-    private static void writeFile(File file, String content) throws IOException {
-        BufferedWriter writer = null;
-        writer = new BufferedWriter(new FileWriter(file, false));
-        writer.write(content);
-        writer.flush();
-        writer.close();
-    }
-
-    /**
      * 读取用户资料文件，放入map缓存
      */
     public static void initializeUserFromFile() {
@@ -193,8 +169,8 @@ public class CacheMapUtils {
         for (File f : files) {
             if (f.isFile()) {
                 try {
-                    String temp = readFileToStr(f);
-                    ObjectMapper objectMapper=new ObjectMapper();
+                    String temp = FileUtils.readFileToStr(f);
+                    ObjectMapper objectMapper = new ObjectMapper();
                     List<User> userList = objectMapper.readValue(temp, new TypeReference<List<User>>() {
                     });
                     for (User u : userList) {
@@ -228,9 +204,9 @@ public class CacheMapUtils {
         try {
             if (!unitFile.exists()) {//不存在，用默认，且写文件
                 strs = GlobalsConstants.GOODS_INITIAL_UNIT_NAMES.split(",");
-                writeFile(unitFile, GlobalsConstants.GOODS_INITIAL_UNIT_NAMES);
+                FileUtils.writeFile(unitFile, GlobalsConstants.GOODS_INITIAL_UNIT_NAMES);
             } else {//存在，读文件
-                strs = readFileToStr(unitFile).split(",");
+                strs = FileUtils.readFileToStr(unitFile).split(",");
             }
         } catch (IOException e) {
             e.printStackTrace();

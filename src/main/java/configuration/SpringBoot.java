@@ -18,8 +18,8 @@ public class SpringBoot {
     private static Logger logger = LoggerFactory.getLogger(SpringBoot.class);
 
     public static void main(String[] args) {
-        logger.debug(GlobalUtils.toLineInfo("spring boot启动开始"));
+        logger.debug(GlobalUtils.logToLineInfo("spring boot启动开始"));
         SpringApplication.run(SpringBoot.class, args);
-        logger.debug(GlobalUtils.toLineInfo("spring boot启动结束"));
+        logger.debug(GlobalUtils.logToLineInfo("spring boot启动结束"));
     }
 }

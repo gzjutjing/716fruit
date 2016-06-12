@@ -58,25 +58,17 @@ public class MainJFrame extends JFrame {
     }
 
     private void menuAboutActionPerformed(ActionEvent e) {
-        logger.debug(GlobalUtils.toLineInfo("点击帮助中心开始"));
+        logger.debug(GlobalUtils.logToLineInfo("点击帮助中心开始"));
         JOptionPane.showMessageDialog(null, "创建于2016年！");
-        logger.debug(GlobalUtils.toLineInfo("点击帮助中心结束"));
+        logger.debug(GlobalUtils.logToLineInfo("点击帮助中心结束"));
     }
 
     private void menuSelledListActionPerformed(ActionEvent e) {
-        logger.debug(GlobalUtils.toLineInfo("点击销售列表开始"));
+        logger.debug(GlobalUtils.logToLineInfo("点击销售列表开始"));
         mainPanel.removeAll();
         mainPanel.add(new TimePanel());
         mainPanel.validate();
-        logger.debug(GlobalUtils.toLineInfo("点击销售列表结束"));
-    }
-
-    private void menuXlsActionPerformed(ActionEvent e) {
-        logger.debug(GlobalUtils.toLineInfo("点击xls开始"));
-        mainPanel.removeAll();
-        mainPanel.add(new XlsPanel());
-        mainPanel.validate();
-        logger.debug(GlobalUtils.toLineInfo("点击xls结束"));
+        logger.debug(GlobalUtils.logToLineInfo("点击销售列表结束"));
     }
 
     private void initComponents() {
@@ -84,7 +76,6 @@ public class MainJFrame extends JFrame {
         menuBar1 = new JMenuBar();
         menuBegin = new JMenu();
         menuSelledList = new JMenuItem();
-        menuXls = new JMenuItem();
         menuHelp = new JMenu();
         menuAbout = new JMenuItem();
         mainPanel = new JPanel();
@@ -105,11 +96,6 @@ public class MainJFrame extends JFrame {
                 menuSelledList.setText("\u9500\u552e\u5217\u8868");
                 menuSelledList.addActionListener(e -> menuSelledListActionPerformed(e));
                 menuBegin.add(menuSelledList);
-
-                //---- menuXls ----
-                menuXls.setText("\u62a5\u8868\u4e2d\u5fc3");
-                menuXls.addActionListener(e -> menuXlsActionPerformed(e));
-                menuBegin.add(menuXls);
             }
             menuBar1.add(menuBegin);
 
@@ -140,7 +126,6 @@ public class MainJFrame extends JFrame {
     private JMenuBar menuBar1;
     private JMenu menuBegin;
     private JMenuItem menuSelledList;
-    private JMenuItem menuXls;
     private JMenu menuHelp;
     private JMenuItem menuAbout;
     private JPanel mainPanel;

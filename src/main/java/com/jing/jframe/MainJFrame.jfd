@@ -16,11 +16,6 @@ new FormModel {
 						"text": "销售列表"
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuSelledListActionPerformed", true ) )
 					} )
-					add( new FormComponent( "javax.swing.JMenuItem" ) {
-						name: "menuXls"
-						"text": "报表中心"
-						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuXlsActionPerformed", true ) )
-					} )
 				} )
 				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 					name: "menuHelp"
